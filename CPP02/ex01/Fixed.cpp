@@ -11,7 +11,8 @@ Fixed::Fixed()
 Fixed::Fixed(const Fixed& other)
 {
     std::cout<<"Copy Constructor Called"<<std::endl;
-    this->setRawBits(other.getRawBits());
+    if (this != &other)
+        *this = other;
 }
 
 Fixed& Fixed::operator=(const Fixed& other)
@@ -29,7 +30,7 @@ Fixed::~Fixed()
 
 int Fixed::getRawBits( void ) const
 {
-    std::cout<<"getRawBits member function called"<<std::endl;
+    // std::cout<<"getRawBits member function called"<<std::endl;
     return (this->value);
 }
 
@@ -40,24 +41,34 @@ void Fixed::setRawBits(const int raw)
 
 Fixed::Fixed(const int number)
 {
+    std::cout<<"Int constructor called"<<std::endl;
     this->setRawBits(number << this->bits);
 }
-
 Fixed::Fixed(const float number)
 {
+    std::cout<<"Float constructor called"<<std::endl;
     int scalingfactor = 1 << this->bits;
     this->setRawBits(roundf(number * scalingfactor));
 }
 
 int Fixed::toInt( void ) const
 {
-    this->value << this->bits;
-    roundf(this->value);
-    return this->value;
+    float Intvalue = this->value >> this->bits;
+    return (int)roundf(Intvalue);
 }
 
 float Fixed::toFloat( void ) const
 {
     int scalingfactor = 1 << this->bits;
     return (this->value / scalingfactor);
+}
+
+std::ostream&    operator<<(std::ostream &os, const Fixed& obj)
+{
+    float floatingpoint;
+    int scalingfactor = 1 << 8;
+    floatingpoint = obj.getRawBits();
+    floatingpoint /= scalingfactor;
+    os<<floatingpoint;
+    return os;
 }
