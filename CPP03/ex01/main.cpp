@@ -1,16 +1,10 @@
 #include <iostream>
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 
 int main()
 {
-    ClapTrap clap("trap");
-    ClapTrap trap;
-    ClapTrap clap1(clap);
+    ScavTrap robot;
 
-    trap = clap;
-
-    clap.attack("clap");
-    clap.takeDamage(3);
-    clap.beRepaired(1);
+    robot.attack("test");
 }

@@ -3,37 +3,41 @@
 
 ClapTrap::ClapTrap() : HP(10), EP(10), AD(0)
 {
-    std::cout<<"Default constructor called"<<std::endl;
+    std::cout<<"ClapTrap Default constructor called"<<std::endl;
 }
 
 
 ClapTrap::ClapTrap(std::string name) : HP(10), EP(10), AD(0)
 {
+    std::cout<<"ClapTrap Parameterized constructor called"<<std::endl;
     this->name = name;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other)
 {
-    std::cout<<"Copy constructor called"<<std::endl;
-    *this = other;
+    std::cout<<"ClapTrap Copy constructor called"<<std::endl;
+    name = other.name;
+    AD = other.AD;
+    EP = other.EP;
+    HP = other.HP;
 }
 
 const ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 {
-    std::cout<<"Copy assignment operator called"<<std::endl;
     if (this != &other)
     {
         this->name = other.name;
         this->HP = other.HP;
         this->AD = other.AD;
         this->EP = other.EP;
+        std::cout<<"ClapTrap Copy assignment operator called"<<std::endl;
     }
     return (*this);
 }
 
 ClapTrap::~ClapTrap()
 {
-    std::cout<<"Destructor called"<<std::endl;
+    std::cout<<"ClapTrap Destructor called"<<std::endl;
 }
 
 void ClapTrap::attack(const std::string &target)
@@ -77,4 +81,44 @@ void ClapTrap::beRepaired(unsigned int amount)
     EP--;
     HP += amount;
     std::cout<<"ClapTrap gained "<<amount<<" hit points!"<<std::endl;
+}
+
+int ClapTrap::get_AD() const
+{
+    return AD;
+}
+
+int ClapTrap::get_EP() const
+{
+    return EP;
+}
+
+int ClapTrap::get_HP() const
+{
+    return HP;
+}
+
+void    ClapTrap::setname(std::string name)
+{
+    this->name = name;
+}
+
+void    ClapTrap::set_AD(int atk)
+{
+    this->AD = atk;
+}
+
+void    ClapTrap::set_EP(int energy)
+{
+    this->EP = energy;
+}
+
+void    ClapTrap::set_HP(int hit)
+{
+    this->HP = hit;
+}
+
+std::string ClapTrap::getname() const
+{
+    return this->name;
 }

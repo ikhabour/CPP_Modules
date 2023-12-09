@@ -4,7 +4,7 @@ CPP = c++
 
 CPPFLAGS = -Wextra -Werror -Wall -std=c++98
 
-SRCS = ClapTrap.cpp main.cpp
+SRCS = ClapTrap.cpp ScavTrap.cpp main.cpp
 
 OBJECTS = $(SRCS:.cpp=.o)
 

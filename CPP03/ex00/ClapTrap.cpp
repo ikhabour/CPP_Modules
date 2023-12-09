@@ -9,13 +9,17 @@ ClapTrap::ClapTrap() : HP(10), EP(10), AD(0)
 
 ClapTrap::ClapTrap(std::string name) : HP(10), EP(10), AD(0)
 {
+    std::cout<<"ClapTrap Parameterized constructor called"<<std::endl;
     this->name = name;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other)
 {
     std::cout<<"Copy constructor called"<<std::endl;
-    *this = other;
+    this->name = other.name;
+    this->HP = other.HP;
+    this->AD = other.AD;
+    this->EP = other.EP;
 }
 
 const ClapTrap& ClapTrap::operator=(const ClapTrap& other)
@@ -55,7 +59,7 @@ void ClapTrap::takeDamage(unsigned int amount)
         std::cout<<"ClapTrap "<<name<<" is already dead"<<std::endl;
         return ;
     }
-    if ((int)HP - amount <= 0)
+    if ((int)(HP - amount) <= 0)
         HP = 0;
     else
         HP -= amount;
