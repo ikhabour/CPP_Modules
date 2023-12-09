@@ -78,3 +78,18 @@ void ClapTrap::beRepaired(unsigned int amount)
     HP += amount;
     std::cout<<"ClapTrap gained "<<amount<<" hit points!"<<std::endl;
 }
+
+int ClapTrap::get_AD()
+{
+    return AD;
+}
+
+int ClapTrap::get_EP()
+{
+    return EP;
+}
+
+int ClapTrap::get_HP()
+{
+    return HP;
+}
