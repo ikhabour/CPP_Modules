@@ -1,10 +1,10 @@
-NAME = ClapTrap
+NAME = DiamondTrap
 
 CPP = c++
 
 CPPFLAGS = -Wextra -Werror -Wall -std=c++98
 
-SRCS = ClapTrap.cpp ScavTrap.cpp FragTrap.cpp main.cpp
+SRCS = ClapTrap.cpp ScavTrap.cpp FragTrap.cpp main.cpp DiamondTrap.cpp
 
 OBJECTS = $(SRCS:.cpp=.o)
 

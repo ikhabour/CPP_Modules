@@ -16,7 +16,7 @@ ScavTrap::ScavTrap(std::string name): ClapTrap(name)
     this->HP = 100;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& other)
+ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other)
 {
     std::cout<<"ScavTrap Copy constructor called"<<std::endl;
     *this = other;
