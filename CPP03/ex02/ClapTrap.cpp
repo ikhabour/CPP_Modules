@@ -15,14 +15,11 @@ ClapTrap::ClapTrap(std::string name) : HP(10), EP(10), AD(0)
 
 ClapTrap::ClapTrap(const ClapTrap& other)
 {
-    std::cout<<"ClapTrap Copy constructor called"<<std::endl;
-    name = other.name;
-    AD = other.AD;
-    EP = other.EP;
-    HP = other.HP;
+    std::cout<<"ClapTrap Copy constructor called"<<std::endl;\
+    *this = other;
 }
 
-const ClapTrap& ClapTrap::operator=(const ClapTrap& other)
+ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 {
     if (this != &other)
     {
@@ -32,7 +29,7 @@ const ClapTrap& ClapTrap::operator=(const ClapTrap& other)
         this->EP = other.EP;
         std::cout<<"ClapTrap Copy assignment operator called"<<std::endl;
     }
-    return (*this);
+    return *this;
 }
 
 ClapTrap::~ClapTrap()
@@ -42,7 +39,7 @@ ClapTrap::~ClapTrap()
 
 void ClapTrap::attack(const std::string &target)
 {
-    if (EP == 0 || HP == 0)
+    if (EP <= 0 || HP <= 0)
     {
         std::cout<<"ClapTrap cant Attack"<<std::endl;
         return ;
@@ -54,12 +51,12 @@ void ClapTrap::attack(const std::string &target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-    if (HP == 0)
+    if (HP <= 0)
     {
         std::cout<<"ClapTrap "<<name<<" is already dead"<<std::endl;
         return ;
     }
-    if ((int)HP - amount <= 0)
+    if ((int)(HP - amount) <= 0)
         HP = 0;
     else
         HP -= amount;
@@ -68,12 +65,12 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-    if (HP == 0)
+    if (HP <= 0)
     {
         std::cout<<"Cant be repaired , no HP left"<<std::endl;
         return ;
     }
-    if (EP == 0)
+    if (EP <= 0)
     {
         std::cout<<"Cant be repaired, no EP left"<<std::endl;
         return ;
@@ -81,44 +78,4 @@ void ClapTrap::beRepaired(unsigned int amount)
     EP--;
     HP += amount;
     std::cout<<"ClapTrap gained "<<amount<<" hit points!"<<std::endl;
-}
-
-int ClapTrap::get_AD() const
-{
-    return AD;
-}
-
-int ClapTrap::get_EP() const
-{
-    return EP;
-}
-
-int ClapTrap::get_HP() const
-{
-    return HP;
-}
-
-void    ClapTrap::setname(std::string name)
-{
-    this->name = name;
-}
-
-void    ClapTrap::set_AD(int atk)
-{
-    this->AD = atk;
-}
-
-void    ClapTrap::set_EP(int energy)
-{
-    this->EP = energy;
-}
-
-void    ClapTrap::set_HP(int hit)
-{
-    this->HP = hit;
-}
-
-std::string ClapTrap::getname() const
-{
-    return this->name;
 }
