@@ -27,9 +27,7 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other)
     if (this != &other)
     {
         this->name = other.name;
-        this->AD = other.AD;
-        this->HP = other.HP;
-        this->EP = other.EP;
+        ClapTrap::operator=(other);
         std::cout<<"ScavTrap Copy assignment operator called"<<std::endl;
     }
     return *this;

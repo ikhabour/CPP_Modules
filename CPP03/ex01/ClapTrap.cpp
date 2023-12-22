@@ -77,5 +77,5 @@ void ClapTrap::beRepaired(unsigned int amount)
     }
     EP--;
     HP += amount;
-    std::cout<<"ClapTrap gained "<<amount<<" hit points!"<<std::endl;
+    std::cout<<"ClapTrap "<<this->name<<" gained "<<amount<<" hit points!"<<std::endl;
 }

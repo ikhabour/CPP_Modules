@@ -22,14 +22,12 @@ FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other)
     *this = other;
 }
 
-const FragTrap& FragTrap::operator=(const FragTrap& other)
+FragTrap& FragTrap::operator=(const FragTrap& other)
 {
     if (this != &other)
     {
-        this->name= other.name;
-        this->AD = other.AD;
-        this->HP = other.HP;
-        this->EP = other.EP;
+        this->name = other.name;
+        ClapTrap::operator=(other);
         std::cout<<"FragTrap Copy assignment operator called"<<std::endl;
     }
     return *this;

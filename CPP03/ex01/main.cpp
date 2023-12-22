@@ -4,7 +4,14 @@
 
 int main()
 {
-    ScavTrap robot;
+    ScavTrap scav("bob");
+    ScavTrap trap1;
+    ScavTrap trap(scav);
 
-    robot.attack("test");
+    trap1 = trap;
+
+    scav.attack("someone");
+    scav.takeDamage(2);
+    scav.beRepaired(3);
+    scav.guardGate();
 }

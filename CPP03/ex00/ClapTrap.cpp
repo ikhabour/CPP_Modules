@@ -3,7 +3,7 @@
 
 ClapTrap::ClapTrap() : HP(10), EP(10), AD(0)
 {
-    std::cout<<"Default constructor called"<<std::endl;
+    std::cout<<"ClapTrap Default constructor called"<<std::endl;
 }
 
 
@@ -16,13 +16,10 @@ ClapTrap::ClapTrap(std::string name) : HP(10), EP(10), AD(0)
 ClapTrap::ClapTrap(const ClapTrap& other)
 {
     std::cout<<"Copy constructor called"<<std::endl;
-    this->name = other.name;
-    this->HP = other.HP;
-    this->AD = other.AD;
-    this->EP = other.EP;
+    *this = other;
 }
 
-const ClapTrap& ClapTrap::operator=(const ClapTrap& other)
+ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 {
     std::cout<<"Copy assignment operator called"<<std::endl;
     if (this != &other)
@@ -42,7 +39,7 @@ ClapTrap::~ClapTrap()
 
 void ClapTrap::attack(const std::string &target)
 {
-    if (EP == 0 || HP == 0)
+    if (EP <= 0 || HP <= 0)
     {
         std::cout<<"ClapTrap cant Attack"<<std::endl;
         return ;
@@ -54,7 +51,7 @@ void ClapTrap::attack(const std::string &target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-    if (HP == 0)
+    if (HP <= 0)
     {
         std::cout<<"ClapTrap "<<name<<" is already dead"<<std::endl;
         return ;
@@ -68,12 +65,12 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-    if (HP == 0)
+    if (HP <= 0)
     {
         std::cout<<"Cant be repaired , no HP left"<<std::endl;
         return ;
     }
-    if (EP == 0)
+    if (EP <= 0)
     {
         std::cout<<"Cant be repaired, no EP left"<<std::endl;
         return ;

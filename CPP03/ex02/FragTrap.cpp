@@ -22,7 +22,7 @@ FragTrap::FragTrap(const FragTrap& other)
     *this = other;
 }
 
-const FragTrap& FragTrap::operator=(const FragTrap& other)
+FragTrap& FragTrap::operator=(const FragTrap& other)
 {
     if (this != &other)
     {
@@ -48,5 +48,5 @@ void    FragTrap::highFiveGuys()
         return ;
     }
     EP--;
-    std::cout<<"FragTrap "<<this->name<<"Highfived everyone"<<std::endl;
+    std::cout<<"FragTrap "<<this->name<<" Highfived everyone"<<std::endl;
 }

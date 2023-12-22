@@ -1,10 +1,10 @@
-NAME = FragTrap
+NAME = Animal
 
 CPP = c++
 
 CPPFLAGS = -Wextra -Werror -Wall -std=c++98
 
-SRCS = ClapTrap.cpp ScavTrap.cpp FragTrap.cpp main.cpp
+SRCS = Animal.cpp main.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
 
 OBJECTS = $(SRCS:.cpp=.o)
 

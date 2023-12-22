@@ -14,7 +14,7 @@ class ClapTrap
         ClapTrap();
         ClapTrap( std::string name );
         ClapTrap(const ClapTrap& other);
-        const ClapTrap& operator=(const ClapTrap& other);
+        ClapTrap& operator=(const ClapTrap& other);
         ~ClapTrap();
         int get_HP();
         int get_EP();

@@ -1,7 +1,7 @@
 #include "DiamondTrap.hpp"
 
 
-DiamondTrap::DiamondTrap() : ClapTrap()
+DiamondTrap::DiamondTrap()
 {
     std::cout<<"DiamondTrap Default Constructor called"<<std::endl;
     this->HP = FragTrap::HP;
@@ -12,6 +12,7 @@ DiamondTrap::DiamondTrap() : ClapTrap()
 DiamondTrap::DiamondTrap(const std::string& Name) : ClapTrap((Name + "_clap_name").c_str())
 {
     std::cout<<"DiamondTrap Parameterized Constructor called"<<std::endl;
+    this->name = Name;
     this->HP = FragTrap::HP;
     this->EP = ScavTrap::EP;
     this->AD = FragTrap::AD;

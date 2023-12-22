@@ -1,8 +1,15 @@
 #include <iostream>
-#include "ScavTrap.hpp"
+#include "DiamondTrap.hpp"
 
 
 int main()
 {
+    DiamondTrap a("bob");
+    DiamondTrap b;
+    a.
+    b = a;
+
     
+    a.attack("someone");
+    a.whoAmI();
 }
