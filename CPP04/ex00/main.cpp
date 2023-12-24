@@ -20,5 +20,6 @@ int main()
     delete j;
     delete i;
     delete w;
+
     return 0;
 }

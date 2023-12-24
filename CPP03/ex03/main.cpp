@@ -6,7 +6,7 @@ int main()
 {
     DiamondTrap a("bob");
     DiamondTrap b;
-    a.
+    
     b = a;
 
     
