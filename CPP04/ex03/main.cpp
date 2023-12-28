@@ -9,25 +9,28 @@
 
 int main()
 {
-    IMateriaSource* src = new MateriaSource();
-    src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
-    ICharacter* me = new Character("me");
-    AMateria* tmp = NULL;
-    // std::cout<<me->getName()<<std::endl;
-
-
-    std::cout<<tmp->getType()<<std::endl;
-    tmp = src->createMateria("ice");
-    me->equip(tmp);
-    tmp = src->createMateria("cure");
-    me->equip(tmp);
-    ICharacter* bob = new Character("bob");
-    // std::cout<<bob->getName()<<std::endl;
-    me->use(0, *bob);
-    me->use(1, *bob);
-    delete bob;
-    delete me;
-    delete src; 
-    return 0;
+    {
+		MateriaSource *src = new MateriaSource();
+		AMateria *ice = new Ice();
+		AMateria *cure = new Cure();
+		src->learnMateria(ice);
+		src->learnMateria(cure);
+		IMateriaSource *clone = new MateriaSource(*src);
+		AMateria *tmp = clone->createMateria("nothing");
+		delete tmp;
+		tmp = clone->createMateria("cure");
+		ICharacter *me = new Character("me");
+		ICharacter *bob = new Character("bob");
+		me->equip(tmp);
+        delete tmp;
+		me->use(0, *bob);
+		// delete tmp; 
+		delete me;
+		delete bob;
+		delete src;
+		delete clone;
+		delete cure;
+		delete ice;
+	}
+	return 0;
 }

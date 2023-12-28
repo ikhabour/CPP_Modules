@@ -7,6 +7,7 @@ class Character : public ICharacter
 {
     private:
         std::string name;
+        int free_index;
         AMateria* slots[4];
         AMateria* save[4];
     public:

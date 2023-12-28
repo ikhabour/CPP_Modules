@@ -8,6 +8,7 @@ class MateriaSource : public IMateriaSource
 {
     private:
         AMateria* materias[4];
+        int free_index;
     public:
         MateriaSource();
         MateriaSource(const MateriaSource& other);

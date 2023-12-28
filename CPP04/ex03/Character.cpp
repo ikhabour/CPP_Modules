@@ -4,15 +4,23 @@
 Character::Character() : ICharacter()
 {
     for (int i = 0; i < 4; i++)
+    {
         this->slots[i] = 0;
+        this->save[i] = 0;
+    }
+    free_index = 0;
 }
 
 
 Character::Character(std::string name)
 {
     this->name = name;
+    free_index = 0;
     for (int i = 0; i < 4; i++)
+    {
         this->slots[i] = 0;
+        this->save[i] = 0;
+    }
 }
 
 Character::Character(const Character& other)
@@ -25,14 +33,21 @@ Character& Character::operator=(const Character& other)
     if (this != &other)
     {
         this->name = other.name;
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < free_index; i++)
         {
-            if (slots[i])
-                delete slots[i];
-            if (save[i])
-                delete save[i];
-            slots[i] = other.slots[i]->clone();
-            save[i] = other.save[i]->clone();
+            if (this->save[i])
+                delete this->save[i];
+        }
+        this->free_index = other.free_index;
+        for (int i = 0; i < other.free_index; i++)
+        {
+            this->slots[i] = other.slots[i]->clone();
+            this->save[i] = this->slots[i];
+        }
+        for (int i = free_index; i < 4; i++)
+        {
+            this->slots[i] = 0;
+            this->save[i] = 0;
         }
     }
     return *this;
@@ -42,8 +57,6 @@ Character::~Character()
 {
     for (int i = 0; i < 4; i++)
     {
-        if (this->slots[i])
-            delete this->slots[i];
         if (this->save[i])
             delete this->save[i];
     }
@@ -56,33 +69,35 @@ std::string const & Character::getName() const
 
 void    Character::equip(AMateria *m)
 {
-    int i = 0;
     if (!m)
     {
         std::cout<<"Invalid materia"<<std::endl;
         return ;
     }
-    while (this->slots[i] != 0 && i < 4)
-        i++;
-    if (i < 4)
-        this->slots[i] = m;
-    std::cout<<"Character "<<this->getName()<<" Equipped Materia type "<<m->getType()<<" on slot "<<i<<std::endl;
+    if (free_index >= 4)
+    {
+        std::cout<<"Cant equip : no space left"<<std::endl;
+        return ;
+    }
+    this->slots[free_index] = m->clone();
+    delete this->save[free_index];
+    this->save[free_index] = this->slots[free_index];
+    free_index++;
+    std::cout<<"Character "<<this->getName()<<" Equipped Materia type "<<m->getType()<<" on slot "<<free_index - 1<<std::endl;
 }
 
 void    Character::unequip(int idx)
 {
-    if (idx < 0 || idx >= 4 || !this->slots[idx])
+    if (idx < 0 || idx >= free_index)
     {
         std::cout<<"Character "<<this->getName()<<" Cant unequip the materia"<<std::endl;
         return ;
     }
-    int i = 0;
-    while (save[i])
-        i++;
-    if (i < 4)
-        save[i] = slots[idx];
-    slots[idx] = 0;
-    std::cout<<"Character "<<this->getName()<<" unequipped Materia type "<<save[i]->getType()<<" from slot "<<idx<<std::endl;
+    for (int i = idx; i < 3; i++)
+        this->slots[i] = this->slots[i + 1];
+    this->slots[3] = 0;
+    free_index--;
+    std::cout<<"Character "<<this->getName()<<" unequipped Materia type "<<save[free_index + 1]->getType()<<" from slot "<<idx<<std::endl;
 }
 
 void    Character::use(int idx, ICharacter& target)
