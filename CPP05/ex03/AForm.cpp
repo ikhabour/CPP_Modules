@@ -67,8 +67,8 @@ void AForm::execute(Bureaucrat const & executor) const
 std::ostream& operator<<(std::ostream& stream, const AForm& other)
 {
 	stream << "AForm name : " << other.getName() << std::endl;
-	stream << "Grade required to sign : " << other.getSignGrade() << std::endl;
-	stream << "Grade required to execute : " << other.getExecuteGrade() << std::endl;
-	stream << "Is signed : " << other.getStatus();
+	stream << "Sign Grade : " << other.getSignGrade() << std::endl;
+	stream << "Execute Grade : " << other.getExecuteGrade() << std::endl;
+	stream << "Signed : " << other.getStatus();
 	return (stream);
 }
