@@ -9,7 +9,6 @@ void    print_d(Data* ptr)
 
 int main()
 {
-    Serializer obj;
     Data ptr;
     uintptr_t num = 0;
 
@@ -18,11 +17,11 @@ int main()
     ptr.height = 1.78;
     std::cout<<"data : "<<std::endl;
     print_d(&ptr);
-    num = obj.serialize(&ptr);
+    num = Serializer::serialize(&ptr);
     std::cout<<"Value after conversion : "<<num<<std::endl;
     Data *ptr1;
 
-    ptr1 = obj.deserialize(num);
+    ptr1 = Serializer::deserialize(num);
     std::cout<<std::endl;
     print_d(ptr1);
     std::cout<<"Address of ptr : "<<&ptr<<std::endl;

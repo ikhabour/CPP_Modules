@@ -1,23 +1,33 @@
 #include "Iter.hpp"
 
-template <typename T>
-void    print(T& a)
+class Awesome
 {
-    std::cout<<"Element : "<<a<<std::endl;
+  public:
+    Awesome( void ) : _n( 42 ) { return; }
+    int get( void ) const { return this->_n; }
+  private:
+    int _n;
+};
+
+std::ostream & operator<<( std::ostream & o, Awesome const & rhs )
+{
+  o << rhs.get();
+  return o;
 }
 
-template <typename T>
-void    add_one(T& n)
+template< typename T >
+void print( T& x )
 {
-    n++;
+  std::cout << x << std::endl;
+  return;
 }
 
-int main()
-{
-    int arr[3] = {1, 2, 3};
-    ::Iter(arr, 3, print);
-    ::Iter(arr, 3, add_one);
-    std::cout<<"\nAfter\n"<<std::endl;;
-    ::Iter(arr, 3, print);
-    return 0;
+int main() {
+  const int tab[] = { 0, 1, 2, 3, 4 };
+  Awesome tab2[5];
+
+  Iter( tab, 5, print<int> );
+  Iter( tab2, 5, print<Awesome> );
+
+  return 0;
 }

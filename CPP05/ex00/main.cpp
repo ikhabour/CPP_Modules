@@ -2,16 +2,19 @@
 
 int main( void )
 {
-    try {
+    try 
+    {
         Bureaucrat bureaucrat("ash", 150);
 
         std::cout << bureaucrat << std::endl;
 
         bureaucrat.decrement();
-    } catch (Bureaucrat::GradeTooLowException &e) {
+    } 
+    catch (Bureaucrat::GradeTooLowException &e) {
         std::cout << e.what() << std::endl; 
     }
-    try {
+    try
+    {
         Bureaucrat bureaucrat("ash1", 1);
 
         std::cout << bureaucrat << std::endl;
