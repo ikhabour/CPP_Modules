@@ -143,7 +143,11 @@ void    BitcoinExchange::handleFiles()
 {
     readDB();
     std::string line;
-    std::getline(this->inputFile, line);
+    if (!std::getline(this->inputFile, line))
+    {
+        std::cerr<<"Error : File is empty"<<std::endl;
+        exit(1);
+    }
     if (headError(line))
         return ;
     while (std::getline(this->inputFile, line))
@@ -156,7 +160,11 @@ void    BitcoinExchange::readDB()
     std::string key, value;
 
 
-    std::getline(this->dataFile, line);
+    if (!std::getline(this->dataFile, line))
+    {
+        std::cerr<<"Error : Data File is empty"<<std::endl;
+        exit(1);
+    }
     while (std::getline(this->dataFile, line))
     {
         key = line.substr(0, 10);
